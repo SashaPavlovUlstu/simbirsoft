@@ -12,12 +12,12 @@
     "format": "prettier --write .",
     "prepare": "husky install"
   },
-  "lint-staged": {
+ "lint-staged": {
   "*.{ts,tsx,js,jsx}": [
     "eslint --max-warnings=0",
-    "prettier --check"
+    "prettier --write"
   ]
-  },
+},
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.13.6",
