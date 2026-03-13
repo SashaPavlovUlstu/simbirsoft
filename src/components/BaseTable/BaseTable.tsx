@@ -1,10 +1,9 @@
 import { Table } from 'antd'
 import PaginationWrapper from '@/ui_components/PaginationWrapper/PaginationWrapper'
 
-import { useMemo, useState} from 'react'
+import { useMemo, useState } from 'react'
 
 import type { BaseTableProps } from './types'
-
 
 const BaseTable = <T extends { id: number | string }>({
   data,

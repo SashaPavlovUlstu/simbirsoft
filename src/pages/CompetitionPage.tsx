@@ -33,7 +33,11 @@ const CompetitionPage = () => {
         items={leaguesBreadcrumb(competitionName)}
       />
       <DateFilter onChange={setDates} />
-      <BaseTable data={filteredMatches} columns={MATCHESCOLUMNS} loading={isLoading} />
+      <BaseTable
+        data={filteredMatches}
+        columns={MATCHESCOLUMNS}
+        loading={isLoading}
+      />
     </PageWrapper>
   )
 }
