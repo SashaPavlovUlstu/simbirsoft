@@ -44,7 +44,6 @@ const TeamsPage = () => {
         items={currentPageData}
         renderItem={(team) => (
           <UniqueCard
-            item={team}
             link={`/team/${team.id}`}
             title={team.name}
             imageSrc={team.crest}

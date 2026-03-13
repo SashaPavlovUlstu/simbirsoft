@@ -45,7 +45,6 @@ const CompetitionsPage = () => {
         items={currentPageData}
         renderItem={(competition) => (
           <UniqueCard
-            item={competition}
             link={`/competition/${competition.id}`}
             title={competition.name}
             description={competition.area.name}

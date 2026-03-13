@@ -5,7 +5,6 @@ import type { FC } from 'react'
 import type { UniqueCardProps } from './types'
 
 const UniqueCard: FC<UniqueCardProps> = ({
-  item,
   link,
   title,
   description,

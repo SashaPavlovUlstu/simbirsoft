@@ -1,6 +1,6 @@
 import { useGetCompetitionMatchesQuery } from '@/services/CompetitionsApi'
 import { useParams } from 'react-router-dom'
-import { useMemo, useState } from 'react'
+import {useState } from 'react'
 
 import DateFilter from '@/components/DateFilter/DateFilter'
 import AppBreadcrumb from '@/components/Breadcrumb/Breadcrumb'

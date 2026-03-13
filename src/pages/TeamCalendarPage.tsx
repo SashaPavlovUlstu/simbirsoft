@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useMemo, useState } from 'react'
+import {useState } from 'react'
 import {
   useGetTeamByIdQuery,
   useGetTeamMatchesQuery,
