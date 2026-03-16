@@ -1,17 +1,19 @@
+import { useMemo, useState, type FC } from 'react'
 import { Table } from 'antd'
-import PaginationWrapper from '@/ui_components/PaginationWrapper/PaginationWrapper'
 
-import { useMemo, useState } from 'react'
+import PaginationWrapper from '@/ui_components/PaginationWrapper/PaginationWrapper'
 
 import type { BaseTableProps } from './types'
 
-const BaseTable = <T extends { id: number | string }>({
+import styles from './BaseTable.module.css'
+
+const BaseTable: FC<BaseTableProps> = ({
   data,
   columns,
   loading = false,
   pageSize = 10,
   rowKey = 'id',
-}: BaseTableProps<T>) => {
+}) => {
   const [page, setPage] = useState(1)
 
   const paginatedData = useMemo(() => {
@@ -20,8 +22,8 @@ const BaseTable = <T extends { id: number | string }>({
   }, [data, page, pageSize])
 
   return (
-    <div className="flex flex-col flex-1">
-      <div className="flex-1 overflow-auto">
+    <div className={styles.table}>
+      <div className={styles.content}>
         <Table
           rowKey={rowKey}
           columns={columns}
@@ -30,7 +32,7 @@ const BaseTable = <T extends { id: number | string }>({
           pagination={false}
           showHeader={false}
           locale={{
-            emptyText: loading ? 'Загрузка...' : 'Данные отсутствуют',
+            emptyText: loading ? 'Загрузка' : 'Данные отсутствуют',
           }}
         />
       </div>

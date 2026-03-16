@@ -1,23 +1,17 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { setupStore } from './store/store.ts'
-import './index.css'
-
 import { StyleProvider } from '@ant-design/cssinjs'
 import { ConfigProvider } from 'antd'
+import { createRoot } from 'react-dom/client'
 
-const store = setupStore
+import App from './App.tsx'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
-    <BrowserRouter basename="/simbirsoft/">
-      <StyleProvider layer>
-        <ConfigProvider>
-          <App />
-        </ConfigProvider>
-      </StyleProvider>
-    </BrowserRouter>
-  </Provider>,
+  <BrowserRouter basename="/simbirsoft/">
+    <StyleProvider layer>
+      <ConfigProvider>
+        <App />
+      </ConfigProvider>
+    </StyleProvider>
+  </BrowserRouter>,
 )

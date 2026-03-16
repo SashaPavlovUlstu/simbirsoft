@@ -1,41 +1,43 @@
-import { useGetCompetitionMatchesQuery } from '@/services/CompetitionsApi'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {useState } from 'react'
 
-import DateFilter from '@/components/DateFilter/DateFilter'
 import AppBreadcrumb from '@/components/Breadcrumb/Breadcrumb'
 import BaseTable from '@/components/BaseTable/BaseTable'
+import DateFilter from '@/components/DateFilter/DateFilter'
 import PageWrapper from '@/components/PageWrapper/PageWrapper'
 
-import { leaguesBreadcrumb } from '@/utils/breadcrumb'
+import { MATCHES_COLUMNS } from '@/config/matchColumns'
 
-import { MATCHESCOLUMNS } from '@/constants/matches'
+import { useCompetitionMatches } from '@/hooks/useCompetitionMatches'
 import { useDateFilteredMatches } from '@/hooks/UseDateFilter'
+
+import { createBreadcrumb } from '@/utils/breadcrumb'
+
+import styles from './CompetitionPage.module.css'
 
 const CompetitionPage = () => {
   const { id } = useParams<{ id: string }>()
   const [dates, setDates] = useState<[string, string] | null>(null)
 
-  const { data: matches = [], isLoading } = useGetCompetitionMatchesQuery({
-    id: id!,
+  const { matches, isLoading } = useCompetitionMatches({
+    id,
     dateFrom: dates?.[0],
     dateTo: dates?.[1],
   })
 
   const filteredMatches = useDateFilteredMatches(matches, dates)
-
   const competitionName = matches[0]?.competition?.name
 
   return (
     <PageWrapper>
       <AppBreadcrumb
-        className="mb-5"
-        items={leaguesBreadcrumb(competitionName)}
+        className={styles.breadcrumb}
+        items={createBreadcrumb('Лиги', '/', competitionName)}
       />
       <DateFilter onChange={setDates} />
       <BaseTable
         data={filteredMatches}
-        columns={MATCHESCOLUMNS}
+        columns={MATCHES_COLUMNS}
         loading={isLoading}
       />
     </PageWrapper>

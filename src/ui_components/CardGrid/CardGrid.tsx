@@ -1,24 +1,21 @@
-import { Row, Col } from 'antd'
-
 import type { FC } from 'react'
+
 import type { CardGridProps } from './types'
+
+import styles from './CardGrid.module.css'
 
 const CardGrid = <T extends unknown>({
   items,
   renderItem,
-  xs = 24,
-  sm = 12,
-  md = 8,
-  lg = 6,
-  gutter = [24, 24],
+  className = '',
 }: CardGridProps<T>): ReturnType<FC> => (
-  <Row gutter={gutter}>
+  <div className={`${styles.grid} ${className}`.trim()}>
     {items.map((item, index) => (
-      <Col xs={xs} sm={sm} md={md} lg={lg} key={index}>
+      <div key={index} className={styles.item}>
         {renderItem(item)}
-      </Col>
+      </div>
     ))}
-  </Row>
+  </div>
 )
 
 export default CardGrid

@@ -1,7 +1,7 @@
-import CompetitionsPage from '@/pages/CompetitionsPage'
-import CompetitionPage from '@/pages/CompetitionPage'
-import TeamCalendarPage from '@/pages/TeamCalendarPage'
-import TeamsPage from '@/pages/TeamsPage'
+import CompetitionPage from '@/pages/CompetitionPage/CompetitionPage'
+import CompetitionsPage from '@/pages/CompetitionsPage/CompetitionsPage'
+import TeamCalendarPage from '@/pages/TeamCalendarPage/TeamCalendarPage'
+import TeamsPage from '@/pages/TeamsPage/TeamsPage'
 
 import type { IRoute } from './types'
 

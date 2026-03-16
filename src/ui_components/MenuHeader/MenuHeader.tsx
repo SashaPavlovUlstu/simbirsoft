@@ -1,8 +1,12 @@
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ConfigProvider, Layout, Menu } from 'antd'
+
 import FifaIcon from '@/assets/FifaIcon'
-import { Layout, Menu } from 'antd'
-import { useNavigate, useLocation } from 'react-router-dom'
 import Container from '@/components/Container/Container'
 import { MENUITEMS } from '@/constants/menu'
+
+import { menuHeaderTheme } from './config'
+import styles from './MenuHeader.module.css'
 
 const { Header } = Layout
 
@@ -11,18 +15,21 @@ const MenuHeader = () => {
   const location = useLocation()
 
   return (
-    <Header className="bg-white border-b border-gray-200 px-0">
-      <Container className="flex items-center gap-6">
-        <FifaIcon size={80} className="text-blue-600" />
-        <Menu
-          mode="horizontal"
-          selectedKeys={[location.pathname]}
-          items={MENUITEMS}
-          onClick={(e) => navigate(e.key)}
-          className="flex-1 border-b-0"
-        />
-      </Container>
-    </Header>
+    <ConfigProvider theme={menuHeaderTheme}>
+      <Header className={styles.header}>
+        <Container className={styles.inner}>
+          <FifaIcon size={84} className={styles.logo} />
+          <Menu
+            mode="horizontal"
+            disabledOverflow
+            selectedKeys={[location.pathname]}
+            items={MENUITEMS}
+            onClick={(e) => navigate(e.key)}
+            className={styles.menu}
+          />
+        </Container>
+      </Header>
+    </ConfigProvider>
   )
 }
 

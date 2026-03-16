@@ -1,0 +1,19 @@
+.layout {
+  min-height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  padding: var(--size-24);
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}

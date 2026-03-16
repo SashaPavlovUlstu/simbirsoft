@@ -1,8 +1,10 @@
-import { Card } from 'antd'
-import { Link } from 'react-router-dom'
-
 import type { FC } from 'react'
+import { Link } from 'react-router-dom'
+import { Card } from 'antd'
+
 import type { UniqueCardProps } from './types'
+
+import styles from './UniqueCard.module.css'
 
 const UniqueCard: FC<UniqueCardProps> = ({
   link,
@@ -15,15 +17,11 @@ const UniqueCard: FC<UniqueCardProps> = ({
     <Link to={link}>
       <Card
         hoverable
-        className="text-center p-5"
+        className={styles.card}
         cover={
           imageSrc && (
-            <div className="p-5">
-              <img
-                src={imageSrc}
-                alt={title}
-                className="h-20 object-contain mx-auto"
-              />
+            <div className={styles.cover}>
+              <img src={imageSrc} alt={title} className={styles.image} />
             </div>
           )
         }

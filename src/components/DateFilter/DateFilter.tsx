@@ -1,7 +1,10 @@
-import { DatePicker, Space } from 'antd'
-import { useState, type FC } from 'react'
 import dayjs from 'dayjs'
+import { useState, type FC } from 'react'
+import { DatePicker, Space } from 'antd'
+
 import type { DateFilterProps } from './types'
+
+import styles from './DateFilter.module.css'
 
 const DateFilter: FC<DateFilterProps> = ({ onChange }) => {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null)
@@ -34,7 +37,7 @@ const DateFilter: FC<DateFilterProps> = ({ onChange }) => {
   }
 
   return (
-    <Space className="mt-12 mb-5" size={12} align="start">
+    <Space className={styles.filter} size={12} align="start">
       <span>Матчи с</span>
       <DatePicker
         value={startDate}

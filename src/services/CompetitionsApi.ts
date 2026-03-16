@@ -1,42 +1,40 @@
-import { createApi } from '@reduxjs/toolkit/query/react'
-import { axiosBaseQuery } from '@/services/Api'
+import api from '@/services/Api'
 
 import type { CompetitionsResponse } from '@/types/Competitions'
-import type { Match, MatchesResponse } from '@/types/Matches'
+import type { MatchesResponse } from '@/types/Matches'
 
-export const competitionsApi = createApi({
-  reducerPath: 'footballApi',
-  baseQuery: axiosBaseQuery(),
-  tagTypes: ['Competition'],
-  endpoints: (builder) => ({
-    getCompetitions: builder.query<CompetitionsResponse, void>({
-      query: () => ({
-        url: '/competitions',
-        method: 'GET',
-      }),
-      providesTags: ['Competition'],
-    }),
+type CompetitionMatchesParams = {
+  id: string
+  dateFrom?: string
+  dateTo?: string
+}
 
-    getCompetitionMatches: builder.query<
-      Match[],
-      { id: string; dateFrom?: string; dateTo?: string }
-    >({
-      query: ({ id, dateFrom, dateTo }) => {
-        const params: Record<string, string> = {}
-        if (dateFrom) params.dateFrom = dateFrom
-        if (dateTo) params.dateTo = dateTo
+export default class CompetitionsApi {
+  static async fetchCompetitions() {
+    const response = await api.get<CompetitionsResponse>('/competitions')
+    return response.data
+  }
 
-        return {
-          url: `/competitions/${id}/matches`,
-          method: 'GET',
-          params,
-        }
-      },
-      transformResponse: (response: MatchesResponse) => response.matches,
-      providesTags: ['Competition'],
-    }),
-  }),
-})
+  static async fetchCompetitionMatches({
+    id,
+    dateFrom,
+    dateTo,
+  }: CompetitionMatchesParams) {
+    const params: Record<string, string> = {}
 
-export const { useGetCompetitionsQuery, useGetCompetitionMatchesQuery } =
-  competitionsApi
+    if (dateFrom) {
+      params.dateFrom = dateFrom
+    }
+
+    if (dateTo) {
+      params.dateTo = dateTo
+    }
+
+    const response = await api.get<MatchesResponse>(
+      `/competitions/${id}/matches`,
+      { params },
+    )
+
+    return response.data.matches
+  }
+}

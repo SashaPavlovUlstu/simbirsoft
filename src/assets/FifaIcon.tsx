@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+
 import type { IconProps } from './types'
 
 const FifaIcon: FC<IconProps> = ({ size = 24, className, ...props }) => (

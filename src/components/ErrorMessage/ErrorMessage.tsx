@@ -2,9 +2,11 @@ import { type FC } from 'react'
 
 import type { ErrorMessageProps } from './types'
 
+import styles from './ErrorMessage.module.css'
+
 const ErrorMessage: FC<ErrorMessageProps> = ({ children, message }) => {
   return (
-    <div className="p-6 bg-red-100 text-red-800 rounded-md text-center">
+    <div className={styles.message}>
       {children || message || 'Произошла ошибка'}
     </div>
   )

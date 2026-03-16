@@ -1,7 +1,8 @@
-import { Breadcrumb } from 'antd'
-import { Link } from 'react-router-dom'
-import type { AppBreadcrumbProps } from './types'
 import type { FC } from 'react'
+import { Link } from 'react-router-dom'
+import { Breadcrumb } from 'antd'
+
+import type { AppBreadcrumbProps } from './types'
 
 const AppBreadcrumb: FC<AppBreadcrumbProps> = ({ items, className }) => {
   return (

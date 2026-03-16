@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
-import { navigateRouter } from './Routes'
+
 import AppLayout from '@/components/AppLayout/AppLayout'
-import CompetitionsPage from '@/pages/CompetitionsPage'
+import CompetitionsPage from '@/pages/CompetitionsPage/CompetitionsPage'
+
+import { navigateRouter } from './Routes'
 
 const AppRoutes = () => {
   return (

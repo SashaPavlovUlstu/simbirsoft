@@ -1,0 +1,7 @@
+.message {
+  padding: var(--size-24);
+  text-align: center;
+  color: var(--color-error-text);
+  background: var(--color-error-background);
+  border-radius: var(--size-6);
+}

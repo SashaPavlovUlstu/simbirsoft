@@ -1,40 +1,21 @@
-import { createApi } from '@reduxjs/toolkit/query/react'
-import { axiosBaseQuery } from '@/services/Api'
+import api from '@/services/Api'
 
-import type { TeamsResponse, Team } from '@/types/Teams'
-import type { Match, MatchesResponse } from '@/types/Matches'
+import type { MatchesResponse } from '@/types/Matches'
+import type { Team, TeamsResponse } from '@/types/Teams'
 
-export const teamsApi = createApi({
-  reducerPath: 'teamsApi',
-  baseQuery: axiosBaseQuery(),
-  tagTypes: ['Team'],
-  endpoints: (builder) => ({
-    getTeams: builder.query<TeamsResponse, void>({
-      query: () => ({
-        url: '/teams',
-        method: 'GET',
-      }),
-      providesTags: ['Team'],
-    }),
+export default class TeamsApi {
+  static async fetchTeams() {
+    const response = await api.get<TeamsResponse>('/teams')
+    return response.data
+  }
 
-    getTeamById: builder.query<Team, number>({
-      query: (id) => ({
-        url: `/teams/${id}`,
-        method: 'GET',
-      }),
-      providesTags: ['Team'],
-    }),
+  static async fetchTeamById(id: number) {
+    const response = await api.get<Team>(`/teams/${id}`)
+    return response.data
+  }
 
-    getTeamMatches: builder.query<Match[], number>({
-      query: (id) => ({
-        url: `/teams/${id}/matches`,
-        method: 'GET',
-      }),
-      transformResponse: (response: MatchesResponse) => response.matches,
-      providesTags: ['Team'],
-    }),
-  }),
-})
-
-export const { useGetTeamsQuery, useGetTeamByIdQuery, useGetTeamMatchesQuery } =
-  teamsApi
+  static async fetchTeamMatches(id: number) {
+    const response = await api.get<MatchesResponse>(`/teams/${id}/matches`)
+    return response.data.matches
+  }
+}

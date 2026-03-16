@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-
 export const useDateFilteredMatches = <T extends { utcDate: string }>(
   matches: T[],
   dates: [string, string] | null,

@@ -1,13 +1,12 @@
 import type { BreadcrumbItem } from '@/components/Breadcrumb/types'
 
-export const leaguesBreadcrumb = (
-  competitionName?: string,
-): BreadcrumbItem[] => [
-  { title: 'Лиги', link: '/' },
-  { title: competitionName || '...' },
-]
+const DEFAULT_BREADCRUMB_TITLE = 'Загрузка...'
 
-export const teamsBreadcrumb = (teamName?: string): BreadcrumbItem[] => [
-  { title: 'Команды', link: '/teams' },
-  { title: teamName || '...' },
+export const createBreadcrumb = (
+  rootTitle: BreadcrumbItem['title'],
+  rootLink: string,
+  currentTitle?: BreadcrumbItem['title'],
+): BreadcrumbItem[] => [
+  { title: rootTitle, link: rootLink },
+  { title: currentTitle || DEFAULT_BREADCRUMB_TITLE },
 ]

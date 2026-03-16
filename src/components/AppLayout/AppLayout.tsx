@@ -1,16 +1,19 @@
-import { Layout } from 'antd'
 import { Outlet } from 'react-router-dom'
-import MenuHeader from '@/ui_components/MenuHeader/MenuHeader'
+import { Layout } from 'antd'
+
 import Container from '../Container/Container'
+import MenuHeader from '@/ui_components/MenuHeader/MenuHeader'
+
+import styles from './AppLayout.module.css'
 
 const { Content } = Layout
 
 const AppLayout = () => {
   return (
-    <Layout className="min-h-screen flex flex-col">
+    <Layout className={styles.layout}>
       <MenuHeader />
-      <Content className="flex-1 p-6">
-        <Container className="flex-1 flex flex-col">
+      <Content className={styles.content}>
+        <Container className={styles.container}>
           <Outlet />
         </Container>
       </Content>

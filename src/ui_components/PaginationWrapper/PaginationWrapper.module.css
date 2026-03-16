@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--size-40);
+}
+
+.pagination :global(.ant-pagination-jump-prev:hover),
+.pagination :global(.ant-pagination-jump-next:hover) {
+  color: var(--color-brand-primary);
+}
+
+.jumpEllipsis {
+  display: block;
+  color: currentColor;
+  opacity: 1;
+}
